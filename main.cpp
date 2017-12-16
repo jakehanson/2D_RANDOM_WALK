@@ -23,10 +23,18 @@ int main(int argc, char** argv)
 	x = 0;
 	y = 0; // start at bottom center
 
+	// Initialize Random Device
     std::random_device rd; // create random device to seed generator
 	std::mt19937 gen(rd()); // create generator with random seed
 	std::uniform_real_distribution<long double> uni(0.,1); // init uniform dist on (0,1]
 
+	// Write parameters to file
+	std::ofstream params("params.txt");
+	params << "L\t" << "max_steps" << std::endl;
+	params << L << "\t" << max_steps << std::endl;
+	params.close();
+
+	// Open file for x,y,t data
 	std::ofstream data_file("data.txt");
 	data_file << "Step\t" << "x\t" << "y" << std::endl;
 
